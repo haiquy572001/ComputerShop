@@ -1,0 +1,40 @@
+header {
+    width: 100%;
+    padding: 6px 20px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    background: #334D6E !important;
+  }
+  
+  header a{
+    text-decoration: none;
+  }
+  
+  header nav{
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  header nav p{
+    font-weight: 600;
+    font-size: 20;
+    color: white;
+    text-transform: uppercase;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+.header__tab {
+    display: flex;
+    flex-direction: 'row';
+    align-items: center;
+}
+.header__logo{
+    height:50px !important;
+    width: 85px !important;
+    background-position: stretch;
+}
