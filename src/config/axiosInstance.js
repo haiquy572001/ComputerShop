@@ -4,7 +4,7 @@ let headers = {};
 let isRefreshing = false;
 let failedQueue = [];
 
-const BASE_URL = "https://api.sucodev.com/api/v1";
+const BASE_URL = "https://fa3f-171-225-184-188.ap.ngrok.io/api";
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,

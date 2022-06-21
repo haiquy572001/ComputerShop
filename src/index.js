@@ -12,7 +12,8 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { ContextProvider } from "./context/store";
 import reducer, { initialState } from "./context/reducers";
 
-axios.defaults.baseURL = "https://api.sucodev.com/api/v1";
+export const BASEURL = "https://fa3f-171-225-184-188.ap.ngrok.io";
+axios.defaults.baseURL = "https://fa3f-171-225-184-188.ap.ngrok.io/api";
 
 const queryClient = new QueryClient({
   defaultOptions: {

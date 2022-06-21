@@ -3,7 +3,7 @@ import { useMyContext } from "../context/store";
 import useCustomRouter from "./useCustomRouter";
 
 const usePagination = (totalPages) => {
-  const { page, sort } = useMyContext();
+  const [{ page, sort }, dispatch] = useMyContext();
   const { pushQuery } = useCustomRouter();
 
   const { firstArr, lastArr } = useMemo(() => {

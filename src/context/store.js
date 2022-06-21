@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer, useMemo } from "react";
 import { initialState } from "./reducers";
-
+import { useLocation } from "react-router-dom";
 export const Store = createContext([initialState, () => initialState]);
 
 export const ContextProvider = ({ reducer, children, initialState }) => {

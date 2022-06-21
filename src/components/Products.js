@@ -3,11 +3,13 @@ import ProductsCard from "./ProductCard";
 
 const Products = React.memo(({ products }) => {
   return (
-    <div className="products">
-      {products.map((product) => (
-        <ProductsCard key={product._id} product={product} />
-      ))}
-    </div>
+    // <div className="products">
+    //   {
+    products.map((product) => (
+      <ProductsCard key={product.id} product={product} />
+    ))
+    //   }
+    // </div>
   );
 });
 

@@ -1,10 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import NotFound from "../components/NotFound";
-import { useSelector } from "react-redux";
+import { useMyContext } from "../context/store";
 
 const generatePage = (pageName) => {
   const component = () => require(`../pages/${pageName}`).default;
+  console.log(component);
 
   try {
     return React.createElement(component());
@@ -15,17 +16,17 @@ const generatePage = (pageName) => {
 
 const PageRender = () => {
   const { page, id } = useParams();
-  // const { auth } = useSelector(state => state)
+  const [{ auth }] = useMyContext();
 
   let pageName = "";
 
-  // if(auth.token){
-  //     if(id){
-  //         pageName = `${page}/[id]`
-  //     }else{
-  //         pageName = `${page}`
-  //     }
-  // }
+  if (auth.token) {
+    if (id) {
+      pageName = `${page}/[id]`;
+    } else {
+      pageName = `${page}`;
+    }
+  }
 
   return generatePage(pageName);
 };

@@ -4,7 +4,6 @@ import usePagination from "../hooks/usePagination";
 const Pagination = React.memo(({ totalPages }) => {
   const { firstArr, lastArr, isActive, prev, next, jump } =
     usePagination(totalPages);
-
   return (
     <div className="pagination">
       <button onClick={prev}>&laquo;</button>

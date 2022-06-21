@@ -1,17 +1,24 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
 import { useMyContext } from "./context/store";
-import Cart from "./pages/cart";
+import Cart from "./pages/carts";
 import Home from "./pages/home";
 import Login from "./pages/login";
-import Product from "./pages/product";
+import Product from "./pages/products";
 import Register from "./pages/register";
 
 import { actionTypes } from "./context/reducers";
+import DetailProduct from "./pages/products/detail";
+import NotFound from "./components/NotFound";
+import Footer from "./components/Footer";
+import Loading from "./components/Loading";
+import Order from "./pages/orders";
+import DetailOrder from "./pages/orders/detail";
 
 const App = () => {
-  const [{ auth }, dispatch] = useMyContext();
+  const [{ auth, loading }, dispatch] = useMyContext();
+  const [open, setOpen] = useState(false);
 
   useLayoutEffect(() => {
     const setToken = async () => {
@@ -20,7 +27,7 @@ const App = () => {
       if (token && refresh_token) {
         dispatch({
           type: actionTypes.SET_AUTH,
-          payload: { access_token: token, refresh_token: refresh_token },
+          payload: { access: token, refresh: refresh_token },
         });
       }
     };
@@ -28,17 +35,16 @@ const App = () => {
       setToken();
     }
   }, [dispatch, auth]);
+
   return (
     <>
-      <Header />
-
+      {/* <input type="checkbox" id="theme" /> */}
+      <Header open={open} setOpen={setOpen} />
       <Routes>
         <Route
           path="/"
           exact={true}
-          element={
-            auth.token ? <Home /> : <Navigate to="/login" replace={true} />
-          }
+          element={<Home open={open} setOpen={setOpen} />}
         />
         <Route
           path="/login"
@@ -50,9 +56,18 @@ const App = () => {
             !auth.token ? <Register /> : <Navigate to="/" replace={true} />
           }
         />
-        <Route path="/product" element={<Product />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/orders" element={<Order />} />
+        <Route path="/orders/:id" element={<DetailOrder />} />
+
+        <Route path="/products/:type/:id" element={<DetailProduct />} />
+        {/* <Route path="/profile" chid={<Profile />} /> */}
+        <Route path="/carts" element={<Cart />} />
+
+        <Route path="*" element={<Navigate to="/" replace={true} />} />
       </Routes>
+      {loading && <Loading />}
+
+      {/* <Footer /> */}
     </>
   );
 };

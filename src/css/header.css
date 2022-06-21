@@ -1,40 +1,96 @@
 header {
-    width: 100%;
-    padding: 6px 20px;
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 11;
-    background: #334D6E !important;
-  }
-  
-  header a{
-    text-decoration: none;
-  }
-  
-  header nav{
-    display: flex;
-    list-style: none;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  header nav p{
-    font-weight: 600;
-    font-size: 20;
-    color: white;
-    text-transform: uppercase;
-    margin: 0 10px;
-    cursor: pointer;
-  }
-.header__tab {
-    display: flex;
-    flex-direction: 'row';
-    align-items: center;
+  width: 100%;
+  padding: 6px 20px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  background: #334d6e !important;
 }
-.header__logo{
-    height:50px !important;
-    width: 85px !important;
-    background-position: stretch;
+
+header a {
+  text-decoration: none;
+}
+header a:hover {
+  text-decoration: none;
+}
+
+header nav {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+header nav p {
+  font-weight: 500;
+  font-size: 18px;
+  color: white;
+  margin: 0 30px;
+  cursor: pointer;
+}
+.header__tab {
+  display: flex;
+  flex-direction: "row";
+  align-items: center;
+}
+.header__logo {
+  height: 50px !important;
+  width: 85px !important;
+  background-position: stretch;
+}
+.count_cart {
+  background: #f46414;
+  border-radius: 100px;
+  position: absolute;
+  left: 12px;
+  top: 0;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 12px;
+}
+
+/* ----------- Header Menu ---------- */
+.dropdown-menu {
+  position: absolute;
+  left: inherit;
+  right: 40px;
+}
+.dropdown-menu.show {
+  transform: translate3d(-128px, 46px, 0px) !important;
+}
+.header .menu label {
+  cursor: pointer;
+}
+
+/* ----------- Avatar ---------- */
+
+.supper-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.big-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.medium-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.small-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
 }

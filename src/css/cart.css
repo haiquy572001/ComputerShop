@@ -1,0 +1,273 @@
+.main_carts {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.container > h1 {
+  padding: 20px 0;
+}
+
+.cart {
+  display: flex;
+}
+
+.products_cart {
+  flex: 0.75;
+}
+
+.product {
+  display: flex;
+
+  width: 100%;
+
+  height: 200px;
+
+  overflow: hidden;
+
+  width: 100%;
+  box-shadow: 2px 3px 20px #ccc;
+  border-radius: 4px;
+  transition: 0.5s linear;
+  overflow: hidden;
+  word-wrap: break-word;
+  position: relative;
+
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.product:hover {
+  border: none;
+
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.product > img {
+  width: 300px;
+
+  height: 200px;
+
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 20px;
+
+  width: 100%;
+
+  position: relative;
+}
+
+.product-name {
+  margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.product-price {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #cb1c22;
+}
+
+.product-remove {
+  position: absolute;
+
+  top: 10px;
+
+  right: 10px;
+
+  height: 30px;
+  width: 30px;
+
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: red;
+
+  color: white;
+
+  cursor: pointer;
+  outline: none;
+}
+
+.product-quantity input {
+  width: 50px;
+  padding: 5px;
+  text-align: center;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.cart-total input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.cart-total {
+  flex: 0.25;
+
+  margin-left: 20px;
+
+  padding: 20px;
+
+  height: 400px;
+
+  box-shadow: 0 5px 15px #00000026;
+
+  border-radius: 5px;
+}
+
+.cart-total p {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 30px !important;
+
+  font-size: 20px;
+
+  font-weight: 500;
+  flex: 1;
+}
+
+.cart-total button {
+  text-align: center;
+
+  height: 40px;
+
+  line-height: 40px;
+
+  background-color: #334d6e;
+
+  color: white;
+
+  text-decoration: none;
+  border-radius: 6px;
+  outline: none;
+}
+
+.cart-total a:hover {
+  background-color: red;
+}
+
+.product_orders {
+  padding: 1.5rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 1rem;
+  justify-items: center;
+}
+
+.product_orders .box {
+  background: #fff;
+  box-shadow: 0 5px 15px #00000026;
+  border-radius: 6px;
+  width: 500px;
+  padding: 20px;
+}
+
+@media screen and (max-width: 700px) {
+  .remove {
+    display: none;
+  }
+
+  .product {
+    height: 150px;
+  }
+
+  .product > img {
+    height: 150px;
+
+    width: 200px;
+  }
+
+  .product-name,
+  .product-price,
+  .product-offer {
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .cart {
+    flex-direction: column;
+  }
+
+  .cart-total {
+    margin-left: 0;
+
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 1220px) {
+  .container {
+    max-width: 95%;
+  }
+}
+
+/* The Modal (background) */
+.modal {
+  display: flex; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 400px;
+}
+
+/* The Close Button */
+button.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  outline: none !important;
+  border: none !important;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+}

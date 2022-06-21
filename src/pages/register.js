@@ -1,37 +1,76 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-// import { login } from '../redux/actions/authAction'
-// import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from "react-router-dom";
+import { useMyContext } from "../context/store";
+import { useMutation } from "react-query";
+import { AuthService } from "../services/auth.service";
+import { actionTypes } from "../context/reducers";
+import { toast } from "react-toastify";
+import Loading from "../components/Loading";
 
 const Register = () => {
   const initialState = {
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    password2: "",
   };
   const [userData, setUserData] = useState(initialState);
-  const { username, email, password, confirmPassword } = userData;
+  const { username, email, password, password2 } = userData;
 
   const [typePass, setTypePass] = useState(false);
   const [typeConfirm, setTypeConfirm] = useState(false);
 
-  // const { auth } = useSelector(state => state)
-  // const dispatch = useDispatch()
-  //   const history = useHistory();
+  const [{ auth }, dispatch] = useMyContext();
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //     if(auth.token) history.push("/")
-  // }, [auth.token, history])
+  const { isError, error, isLoading, mutateAsync } = useMutation(
+    "register",
+    AuthService.register,
+    {
+      onSuccess: (res) => {
+        dispatch({
+          type: actionTypes.LOADING,
+          payload: {
+            loading: false,
+          },
+        });
+        localStorage.setItem("token", res.data.access);
+        localStorage.setItem("refresh_token", res.data.refresh);
+        dispatch({ type: actionTypes.SET_AUTH, payload: res.data });
+        navigate("/");
+      },
+    }
+  );
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // dispatch(login(userData))
+    dispatch({
+      type: actionTypes.LOADING,
+      payload: {
+        loading: true,
+      },
+    });
+    try {
+      await mutateAsync(userData);
+    } catch (error) {
+      dispatch({
+        type: actionTypes.LOADING,
+        payload: {
+          loading: false,
+        },
+      });
+      const errPassword = error.response.data.password ?? "";
+      const errUsername =
+        error.response.data?.username?.length > 0
+          ? error.response.data.username[0]
+          : "";
+      toast.error(errUsername || errPassword || error.message);
+    }
   };
 
   return (
@@ -107,8 +146,8 @@ const Register = () => {
               className="form-control"
               id="exampleInputPassword1"
               onChange={handleChangeInput}
-              value={confirmPassword}
-              name="confirmPassword"
+              value={password2}
+              name="password2"
             />
 
             <small onClick={() => setTypeConfirm(!typeConfirm)}>
@@ -120,9 +159,7 @@ const Register = () => {
         <button
           type="submit"
           className="btn auth_button w-100"
-          disabled={
-            username && email && password && confirmPassword ? false : true
-          }
+          disabled={username && email && password && password2 ? false : true}
         >
           Register
         </button>
